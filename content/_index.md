@@ -181,6 +181,14 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
         <a class="btn btn--secondary" href="/spec/">Read the spec</a>
       </article>
       <article class="resource-card">
+        <h3>Demo roadbook</h3>
+        <p>
+          Explore a sample roadbook, download the ORB file, and validate it against the
+          published schema.
+        </p>
+        <a class="btn btn--ghost" href="/format/demo-roadbook/">View the walkthrough</a>
+      </article>
+      <article class="resource-card">
         <h3>Community roadmap</h3>
         <p>
           Priorities for validation tooling, hazard registry expansion, and competitive rally features.

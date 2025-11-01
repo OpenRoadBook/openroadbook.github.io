@@ -165,6 +165,14 @@ description: "Normative guidance for the OpenRoadBook adventure release, with a 
           release ships JSON Schema plus a CLI reference; upcoming FIA work layers in
           scrutineering and penalty checks.
         </p>
+        <p>
+          The authoritative schema is published at
+          <a href="/schemas/orb.schema.json">https://openroadbook.com/schemas/orb.schema.json</a>,
+          matching the `$id` embedded in the JSON Schema for automatic resolver support. Immutable
+          snapshots live under versioned paths such as
+          <a href="/schemas/1.0/orb.schema.json">https://openroadbook.com/schemas/1.0/orb.schema.json</a>
+          so tooling can pin to a specific release.
+        </p>
       </div>
       <ul class="feature-list">
         <li>Check that <code>km</code> is numeric and non-negative.</li>

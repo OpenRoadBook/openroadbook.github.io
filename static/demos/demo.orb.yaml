@@ -1,0 +1,253 @@
+meta:
+  openroadbook: 1.0
+  profile: adventure
+  id: orb-demo
+  title: Montseny i Guilleries
+  authors:
+    - name: OpenRoadBook Team
+      email: team@openroadbook.org
+  created: 2025-11-01
+  labels: [demo, asphalt, montseny, circular]
+
+  units:
+    distance: km
+    heading: deg
+    speed: kmh
+
+  extensions:
+    corbs.render:
+      map_preview: media/orb-demo-map.png
+      cover_photo: media/orb-demo-cover.jpg
+    orb.analytics:
+      computed:
+        total_distance: 64.8
+        total_instructions: 14
+        cautions: { total: 3, max_severity: 2 }
+
+stages:
+  - id: montseny
+    name: Montseny
+    trunk:
+      instructions:
+        - distance: 0.00
+          time_stage: PT0S
+          heading: 270
+          type: start # Not needed as it is the first instruction, but explicit for clarity
+          # tulip: { symbol: start } # default value for type=start
+          tags: [reset_trip]
+          location:
+            name: Pàrquing públic de Campins
+            coords: [41.818219, 2.519531]
+            plus: PF86+49 Campins
+            w3w: rulebook.eldest.reddish
+          note: Start from car park; set trip to 0.
+
+        - distance: 0.01
+          time_stage: PT0S
+          heading: 240
+          tulip:
+            symbol: roundabout.exit_2
+          road:
+            next: BV-5114
+          location:
+            coords: [41.818219, 2.519531]
+          note: Leave parking towards the roundabout
+
+        - distance: 0.10
+          time_stage: PT30S
+          heading: 240
+          tulip:
+            symbol: roundabout.exit_2
+          road:
+            next: BV-5114
+          location:
+            coords: [41.715349508646675, 2.4600997216351073]
+
+        - distance: 24.20
+          time_stage: PT36M
+          heading: 350
+          type: checkpoint
+          # tulip: { symbol: checkpoint } # Default when type is checkpoint
+          tags: [photo]
+          road:
+            current: BV-5114
+            next: BV-5114
+          location:
+            name: Coll de Sant Marçal
+
+        - distance: 24.30
+          time_stage: PT39M30S
+          heading: 350
+          # tulip: { symbol: straight } # Default when no type
+          road:
+            current: GIV-5201
+            next: GIV-5201
+          note: Road is now GIV-5201
+
+        - id: coll_bordoriol
+          distance: 27.80
+          time_stage: PT44M
+          heading: 350
+          type: milestone
+          road:
+            current: GIV-5201
+            next: GIV-5201
+          location:
+            name: Coll de Bordoriol
+
+        - id: viladrau_junction
+          distance: 33.50
+          time_stage: PT49M
+          heading: 320
+          tulip:
+            symbol: junction.turn_left
+          road:
+            current: GI-5201
+            next: GI-543
+          location:
+            coords: [41.848851752154594, 2.4092738834242757]
+          # alternatives: # Not needed, branches define a start point
+          #   - skip_guilleries
+          #   - skip_to_end
+
+        - distance: 33.40
+          time_stage: PT1H1M
+          heading: 150
+          road:
+            current: GI-543
+            next: GI-520
+          note: Road is now GI-520
+
+        - distance: 36.00
+          time_stage: PT1H6M
+          heading: 350
+          tulip:
+            symbol: exit.right
+          tags: [cyclists]
+          road:
+            current: GI-520
+            next: GI-5251
+          note: Beware of cyclists
+
+    branches:
+      - id: skip_guilleries
+        note: Skip Guilleries loop, straight to Arbúcies
+        start: viladrau_junction # Where the alternative branches off from
+        # end: ~ # if missing or null, means the branch does not return to the main route
+        tulip:
+          symbol: junction.turn_left # Tulip for the alternative branch
+        instructions: # Start after the branch start point
+          - distance: 33.5
+            time_stage: PT58M
+            heading: 160
+            tulip:
+              symbol: junction.turn_right
+            note: Right toward Coll del Ravell
+            road:
+              current: GI-543
+              next: GI-543
+            location:
+              coords: [41.85871840242328, 2.423654904390721]
+
+          - distance: 36.00
+            time_stage: PT1H1M
+            heading: 100
+            location:
+              name: Coll del Ravell
+              coords: [41.85353793132397, 2.435511418982295]
+            note: Continue toward Arbúcies
+            road:
+              current: GI-543
+              next: GI-543
+
+      - id: shorten_guilleries
+        start: viladrau_junction
+        end: guilleries#gi-541
+        note: Shorten Guilleries loop, straight to Sant Hilari
+        instructions:
+          - distance: 33.50
+            time_stage: PT58M
+            heading: 160
+            tulip:
+              symbol: junction.turn_right
+            note: Right toward Coll del Ravell
+            road:
+              current: GI-543
+              next: GI-543
+            location:
+              coords: [41.85871840242328, 2.423654904390721]
+
+          - distance: 36.00
+            time_stage: PT1H1M
+            heading: 100
+            tags: [fuel]
+            tulip:
+              symbol: junction.turn_left
+            note: Continue toward Sant Hilari Sacalm
+            road:
+              current: GI-543
+              next: GI-5411
+            location:
+              name: Coll del Ravell
+              coords: [41.85353793132397, 2.435511418982295]
+
+          - distance: 36.20
+            time_stage: PT1H2M
+            heading: 100
+            tulip:
+              symbol: junction.turn_right
+            note: Continue toward Sant Hilari Sacalm
+            road:
+              current: GI-543
+              next: GI-5411
+            location:
+              coords: [41.85353793132397, 2.435511418982295]
+
+  - id: guilleries
+    name: Guilleries
+    instructions:
+      - distance: 42.60
+        time_stage: PT1H18M
+        heading: 110
+        tulip: { symbol: roundabout.exit_1 }
+        # type: nav # Default when no type
+        road:
+          current: GI-5251
+          next: BV-5201
+        note: Right toward Sant Sadurní d'Osormort
+
+      - distance: 48.20
+        time_stage: PT1H30M
+        heading: 95
+        type: control
+        tulip:
+          svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M8 12h32v24H8z'/></svg>"
+        note: Take selfie with pont de Bojons in the background
+
+      - id: gi-541
+        distance: 61.90
+        time_stage: PT1H55M
+        heading: 160
+        tulip: { symbol: incoming.right } # Keep left, ignore incoming road
+        road:
+          current: GI-541
+          next: GI-541
+        note: 1st exit to Arbúcies.
+
+      - distance: 64.80
+        time_stage: PT2H
+        heading: 180
+        tulip: { symbol: town.through } # Default when type is finish
+        location:
+          coords: [41.876433384726674, 2.50613738583721]
+        note: Continue past Sant Hilari Sacalm
+
+      - distance: 87.80
+        time_stage: PT2H15M
+        heading: 180
+        # tulip: { symbol: finish } # Default when type is finish
+        type: finish # Not needed as it is the last instruction, but explicit for clarity
+        location:
+          coords: [41.818219, 2.519531]
+        note: Finish at Hotel Les Agudes
+

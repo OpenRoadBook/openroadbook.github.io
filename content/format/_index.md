@@ -239,3 +239,20 @@ entries:
     </div>
   </div>
 </section>
+
+<section class="section">
+  <div class="container split">
+    <div>
+      <h2>Work through the demo</h2>
+      <p>
+        Download the Montseny i Guilleries sample ORB file, validate it against the published schema, and
+        use it as a template for your own stages.
+      </p>
+    </div>
+    <div>
+      <a class="btn" href="/format/demo-roadbook/">Open the demo walkthrough</a>
+      <a class="btn btn--secondary" href="/demos/demo.orb.yaml">Download the ORB file</a>
+      <a class="btn btn--ghost" href="/schemas/orb.schema.json">View the schema</a>
+    </div>
+  </div>
+</section>
