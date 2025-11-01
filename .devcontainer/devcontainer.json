@@ -1,0 +1,27 @@
+{
+  "name": "OpenRoadBook Hugo Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/hugo:1": {
+      "version": "0.124.1",
+      "extended": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "forwardPorts": [1313],
+  "portsAttributes": {
+    "1313": {
+      "label": "Hugo server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "hugo version",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "budparr.language-hugo-vscode",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}

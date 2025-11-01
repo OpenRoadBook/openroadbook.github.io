@@ -211,25 +211,42 @@ ul {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.35rem 0.7rem;
   background-color: var(--brand-mark-background);
-  border-radius: 10px;
-  padding: 0.4rem;
+  border-radius: 12px;
+}
+
+.site-brand__mark picture,
+.site-brand__mark img {
+  display: block;
 }
 
 .site-brand__mark img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 40px;
+}
+
+.site-brand__mark img.is-hidden {
+  display: none;
 }
 
 .site-brand__label {
-  display: flex;
+  display: none;
   flex-direction: column;
   line-height: 0.95;
   letter-spacing: 0.04em;
   font-size: 0.92rem;
   text-transform: uppercase;
+}
+
+.site-brand--fallback .site-brand__mark {
+  display: none;
+}
+
+.site-brand--fallback .site-brand__label {
+  display: flex;
 }
 
 .site-brand__label-open {
@@ -347,18 +364,19 @@ ul {
   justify-content: center;
   padding: 0.9rem 1.9rem;
   border-radius: 999px;
-  border: 2px solid var(--color-accent);
-  background-color: var(--color-accent);
-  color: #1e1e1e;
+  border: 2px solid var(--color-secondary);
+  background-color: var(--color-secondary);
+  color: var(--color-text-inverse);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  transition: transform 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .btn:hover,
 .btn:focus-visible {
-  transform: translateY(-2px);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .btn--secondary {

@@ -1,0 +1,13 @@
+baseURL = "https://openroadbook.com/"
+languageCode = "en-us"
+title = "OpenRoadBook"
+paginate = 10
+enableRobotsTXT = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  lastUpdated = "29 Oct 2025"

@@ -1,0 +1,31 @@
+{{ $page := . }}
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-brand" href="{{ "/" | relURL }}">
+      <span class="site-brand__mark">
+        <picture>
+          <source
+            srcset="{{ "assets/img/orb-symbol-dark.svg" | relURL }}"
+            media="(prefers-color-scheme: dark)"
+          />
+          <img
+            src="{{ "assets/img/orb-symbol.svg" | relURL }}"
+            alt="OpenRoadBook"
+            onerror="this.classList.add('is-hidden'); this.closest('.site-brand').classList.add('site-brand--fallback');"
+          />
+        </picture>
+      </span>
+      <span class="site-brand__label">
+        <span class="site-brand__label-open">Open</span>
+        <span class="site-brand__label-road">Road</span>
+        <span class="site-brand__label-book">Book</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      {{ $formatURL := "format/" | relURL }}
+      {{ $specURL := "spec/" | relURL }}
+      <a href="{{ $formatURL }}" {{ if eq $page.Section "format" }}aria-current="page"{{ end }}>Format</a>
+      <a href="{{ $specURL }}" {{ if eq $page.Section "spec" }}aria-current="page"{{ end }}>Specification</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ block "title" . -}}
+      {{- if .IsHome -}}
+        OpenRoadBook · Interoperable roadbook standard
+      {{- else -}}
+        {{ .Title }} · OpenRoadBook
+      {{- end -}}
+    {{- end }}</title>
+    <meta
+      name="description"
+      content="{{ with .Params.description }}{{ . }}{{ else }}OpenRoadBook is an open interoperability format for rally and adventure roadbooks, combining a human-friendly schema with machine validation.{{ end }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;300;400;500;600;700&family=Overpass+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ "assets/css/style.css" | relURL }}" />
+  </head>
+  <body>
+    {{ partial "site-header.html" . }}
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "site-footer.html" . }}
+  </body>
+</html>
