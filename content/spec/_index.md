@@ -6,14 +6,14 @@ description: "Normative guidance for the OpenRoadBook adventure release, with a 
 <section class="hero">
   <div class="container hero__inner">
     <div>
-      <h1 class="hero__title">Specification v1.0 (draft)</h1>
+      <h1 class="hero__title">Specification (draft)</h1>
       <p class="hero__lead">
-        This draft captures the normative rules for the adventure-focused release—field definitions,
-        profiles, and validation criteria that let small teams ship real roadbooks. It also exposes
-        the hooks we need for FIA-grade, competitive extensions.
+        The specification defines normative schema rules, profile behaviour, and validation
+        requirements. Use this document to determine whether a file, tool, or workflow is compliant
+        with the OpenRoadBook format.
       </p>
       <div class="hero__cta">
-        <a class="btn" href="#introduction">Read the introduction</a>
+        <a class="btn" href="#introduction">Introduction & scope</a>
         <a class="btn btn--secondary" href="#validation">Validation</a>
       </div>
     </div>
@@ -32,11 +32,11 @@ description: "Normative guidance for the OpenRoadBook adventure release, with a 
   <div class="container split">
     <div>
       <div class="section__header">
-        <h2>1. Introduction &amp; scope</h2>
+        <h2>Introduction &amp; scope</h2>
         <p>
-          The specification currently anchors the adventure release: lean enough for training rides,
-          structured enough for automation. Profiles and governance processes keep us on track for
-          FIA and professional rally deployments without a disruptive rewrite.
+          This document describes the normative expectations for files claiming conformance to the
+          OpenRoadBook format. It covers required fields, allowed values, profile semantics, and the
+          validation behaviour that tools must implement.
         </p>
       </div>
       <ul class="feature-list">
@@ -73,11 +73,11 @@ description: "Normative guidance for the OpenRoadBook adventure release, with a 
 <section id="goals" class="section">
   <div class="container">
     <div class="section__header">
-      <h2>2. Goals &amp; interoperability pillars</h2>
+      <h2>Goals</h2>
       <p>
-        The specification keeps the adventure schema interoperable across authoring, validation,
-        rendering, and data exchange—while preserving the hooks required for future FIA and
-        professional rally workflows.
+        The specification aims to make roadbooks predictable and verifiable across authoring,
+        validation, rendering, and exchange. It must enable independent implementations to produce
+        consistent outputs from the same inputs.
       </p>
     </div>
     <div class="resource-grid">
@@ -112,10 +112,11 @@ description: "Normative guidance for the OpenRoadBook adventure release, with a 
 <section id="requirements" class="section section--surface-alt">
   <div class="container">
     <div class="section__header">
-      <h2>3. Data requirements</h2>
+      <h2>Data requirements</h2>
       <p>
-        Tools and authors must implement the following structural rules to claim compliance. The
-        schema is intentionally concise to avoid ambiguity at speed.
+        Files that declare `meta.format: OpenRoadBook` and the matching `meta.version` must meet the
+        structural and field-level constraints specified here. The JSON Schema provides the
+        machine-readable contract; this document explains intent and edge cases.
       </p>
     </div>
     <div class="brand-grid">
@@ -159,11 +160,12 @@ description: "Normative guidance for the OpenRoadBook adventure release, with a 
   <div class="container split">
     <div>
       <div class="section__header">
-        <h2>6. Validation</h2>
+        <h2>Validation</h2>
         <p>
-          Validation keeps roadbooks trustworthy before they reach competitors. The adventure
-          release ships JSON Schema plus a CLI reference; upcoming FIA work layers in
-          scrutineering and penalty checks.
+          Validation verifies types, ranges, and registry references. Implementations should use the
+          published JSON Schema as the primary validator and follow the profile-specific rules for
+          mandatory or restricted fields. Validation failures must be reported with clear, actionable
+          messages.
         </p>
         <p>
           The authoritative schema is published at

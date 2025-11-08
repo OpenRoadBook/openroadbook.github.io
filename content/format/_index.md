@@ -6,14 +6,13 @@ description: "Learn how the OpenRoadBook adventure format structures entries, sy
 <section class="hero">
   <div class="container hero__inner">
     <div>
-      <h1 class="hero__title">OpenRoadBook format</h1>
+      <h1 class="hero__title">Format overview</h1>
       <p class="hero__lead">
-        The current release centres on simple adventure roadbooks: lean YAML with matching JSON
-        mirrors plus scripts to validate and export. Profiles in development extend that same
-        structure toward FIA and professional rally operations.
+        This OpenRoadBook standard establishes a file layout, core fields, and symbol registry to be used for roadbooks. The current release targets adventure and non-competitive events; profiles
+        provide a path to other disciplines without changing the base structure.
       </p>
       <div class="hero__cta">
-        <a class="btn" href="#data-model">See the data model</a>
+        <a class="btn" href="#data-model">Data model</a>
         <a class="btn btn--secondary" href="#symbol-registry">Symbol registry</a>
       </div>
     </div>
@@ -32,17 +31,17 @@ description: "Learn how the OpenRoadBook adventure format structures entries, sy
   <div class="container split">
     <div>
       <div class="section__header">
-        <h2>Why the format exists</h2>
+        <h2>Purpose</h2>
         <p>
-          Adventure organizers juggle PDFs, GPX files, screenshots, and spreadsheets. OpenRoadBook
-          gives them a single interoperable foundation today, while keeping a clear path to the
-          richer data competitive rallies demand.
+          Provide a single, unambiguous file format for describing stages and navigation
+          instructions so authors and tools can interoperate. The format emphasises explicit units,
+          stable symbol IDs, and a small set of well-defined fields.
         </p>
       </div>
       <ul class="feature-list">
-        <li>Author once, publish everywhere: print layouts, GPX handoffs, and dashboards.</li>
-        <li>Maintain signage-inspired clarity, even after localization or automated conversion.</li>
-        <li>Extend via profiles without breaking compatibility—today's adventure rides feed tomorrow's FIA events.</li>
+  <li>Single source of truth for printed roadbooks, GPS exports, and digital renderers.</li>
+  <li>Readable by humans (YAML) and consumable by machines (JSON/validation).</li>
+  <li>Profiles and extensions for different assurance levels without breaking existing files.</li>
       </ul>
     </div>
     <aside class="fact-card">
@@ -72,12 +71,12 @@ description: "Learn how the OpenRoadBook adventure format structures entries, sy
 <section id="data-model" class="section">
   <div class="container">
     <div class="section__header">
-      <h2>Data model</h2>
-      <p>
-        Entries describe what competitors see and do on course—distance, tulip, CAP heading,
-        notes, and any supporting metadata. Tools enforce types so navigation software and print
-        workflows stay in sync.
-      </p>
+    <h2>Data model</h2>
+    <p>
+      The data model describes an ordered sequence of entries (instructions) with well-typed
+      fields. Authors supply distances, symbol references (tulips), headings (CAP), notes, and
+      optional coordinates or metadata used by renderers and converters.
+    </p>
     </div>
     <div class="brand-grid">
       <article class="brand-card">
@@ -128,12 +127,12 @@ entries:
 <section id="symbol-registry" class="section section--surface-alt">
   <div class="container">
     <div class="section__header">
-      <h2>Symbol registry</h2>
-      <p>
-        Symbols keep instructions glanceable under rally pacing. The adventure release ships core
-        hazards and services now, and the registry stays stable so FIA and competitive additions
-        can land without breaking existing roadbooks.
-      </p>
+    <h2>Symbol registry</h2>
+    <p>
+      The registry maps short IDs to pictograms, categories, and descriptions. Tools should use
+      these IDs for rendering and validation. New symbols append to the registry; existing IDs
+      are never reused.
+    </p>
     </div>
     <div class="resource-grid">
       <article class="resource-card">

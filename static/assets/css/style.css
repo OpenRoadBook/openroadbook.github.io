@@ -1,94 +1,103 @@
 :root {
   color-scheme: light;
-  --font-base: "Overpass", "Arial Narrow", Arial, sans-serif;
-  --font-mono: "Overpass Mono", "IBM Plex Mono", "Roboto Mono", monospace;
+  --font-base: 'Overpass', 'Arial Narrow', Arial, sans-serif;
+  --font-mono: 'Overpass Mono', 'IBM Plex Mono', 'Roboto Mono', monospace;
 
+  /* Brand palette from spec */
   --color-background: #ffffff;
-  --color-surface: #f3f4f8;
+  --color-surface: #f8f8f8;
   --color-surface-alt: #e6efe7;
   --color-text: #1e1e1e;
-  --color-text-muted: #4a4f65;
+  /* neutral_black */
+  --color-text-muted: #666666;
+  /* neutral_gray */
   --color-text-inverse: #ffffff;
-  --color-text-muted-inverse: rgba(255, 255, 255, 0.76);
+  --color-text-muted-inverse: #bbbbbb;
   --color-border: rgba(30, 30, 30, 0.14);
-  --color-border-strong: rgba(30, 30, 30, 0.28);
-  --color-link: #6166a3;
-  --color-link-hover: #5e8062;
-
-  --color-primary: #6166a3;
-  --color-secondary: #5e8062;
-  --color-accent: #f7964a;
+  --color-link: #4f93c2;
+  /* brand_blue */
+  --color-link-hover: #ef5a4d;
+  /* brand_coral */
+  --color-primary: #4f93c2;
+  /* brand_blue */
+  --color-secondary: #ef5a4d;
+  /* brand_coral */
+  --color-accent: #ef5a4d;
+  /* brand_coral */
 
   --header-background: #1e1e1e;
   --header-border: rgba(255, 255, 255, 0.08);
-  --nav-link-color: rgba(255, 255, 255, 0.76);
-  --nav-link-active: #f7964a;
+  --nav-link-color: #bbbbbb;
+  --nav-link-active: #ef5a4d;
 
   --brand-mark-background: #ffffff;
-  --brand-label-color: #ffffff;
+  --brand-label-color: #1e1e1e;
 
-  --hero-background: #6166a3;
-  --hero-accent-layer: rgba(94, 128, 98, 0.72);
-  --hero-border-color: rgba(255, 255, 255, 0.08);
-  --hero-text-primary: #ffffff;
-  --hero-text-muted: rgba(255, 255, 255, 0.76);
-  --hero-card-background: #ffffff;
-  --hero-card-border: #5e8062;
+  --hero-background: #ffffff;
+  --hero-accent-layer: rgba(79, 147, 194, 0.08);
+  --hero-border-color: #4f93c2;
+  --hero-text-primary: #1e1e1e;
+  --hero-text-muted: #666666;
+  --hero-card-background: #f8f8f8;
+  --hero-card-border: #4f93c2;
 
-  --card-background: #ffffff;
-  --card-border: rgba(30, 30, 30, 0.14);
+  --card-background: #f8f8f8;
+  --card-border: #e6efe7;
 
   --footer-background: #1e1e1e;
   --footer-border: rgba(255, 255, 255, 0.1);
-  --footer-text: rgba(255, 255, 255, 0.76);
+  --footer-text: #bbbbbb;
+
+  --card-border: #e6efe7;
+
+  --footer-background: #1e1e1e;
+  --footer-border: rgba(255, 255, 255, 0.1);
+  --footer-text: #bbbbbb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --color-background: #0f1216;
-    --color-surface: #161c24;
-    --color-surface-alt: #1a231b;
+    --color-background: #161c24;
+    --color-surface: #1a1a1a;
+    --color-surface-alt: #232323;
     --color-text: #f2f4f8;
-    --color-text-muted: #b6bac7;
-    --color-text-inverse: #0f1216;
-    --color-text-muted-inverse: rgba(15, 18, 22, 0.72);
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-strong: rgba(255, 255, 255, 0.18);
-    --color-link: #8d93e3;
-    --color-link-hover: #7fb88c;
+    --color-text-muted: #bbbbbb;
+    --color-text-inverse: #1e1e1e;
+    --color-text-muted-inverse: #666666;
+    --color-border: #232323;
+    --color-link: #7fb8e0;
+    /* brand_blue_dark */
+    --color-link-hover: #ff867b;
+    /* brand_coral_dark */
+    --color-primary: #7fb8e0;
+    /* brand_blue_dark */
+    --color-secondary: #ff867b;
+    /* brand_coral_dark */
+    --color-accent: #ff867b;
 
-    --color-primary: #8d93e3;
-    --color-secondary: #7fb88c;
-    --color-accent: #f7964a;
+    --header-background: #1e1e1e;
+    --header-border: rgba(255, 255, 255, 0.08);
+    --nav-link-color: #bbbbbb;
+    --nav-link-active: #ff867b;
 
-    --header-background: #0b0e13;
-    --header-border: rgba(141, 147, 227, 0.28);
-    --nav-link-color: rgba(255, 255, 255, 0.78);
-    --nav-link-active: #f7964a;
-
-    --brand-mark-background: #131926;
+    --brand-mark-background: #232323;
     --brand-label-color: #ffffff;
 
-    --hero-background: linear-gradient(
-      135deg,
-      rgba(17, 21, 30, 0.96) 0%,
-      rgba(16, 33, 24, 0.98) 55%,
-      rgba(17, 21, 30, 1) 100%
-    );
-    --hero-accent-layer: rgba(141, 147, 227, 0.35);
-    --hero-border-color: rgba(141, 147, 227, 0.28);
+    --hero-background: #161c24;
+    --hero-accent-layer: rgba(127, 184, 224, 0.08);
+    --hero-border-color: #7fb8e0;
     --hero-text-primary: #f2f4f8;
-    --hero-text-muted: rgba(226, 229, 240, 0.74);
-    --hero-card-background: #161c24;
-    --hero-card-border: rgba(141, 147, 227, 0.45);
+    --hero-text-muted: #bbbbbb;
+    --hero-card-background: #232323;
+    --hero-card-border: #7fb8e0;
 
-    --card-background: #161c24;
-    --card-border: rgba(141, 147, 227, 0.22);
+    --card-background: #232323;
+    --card-border: #1a1a1a;
 
-    --footer-background: #0b0e13;
-    --footer-border: rgba(141, 147, 227, 0.22);
-    --footer-text: rgba(199, 205, 225, 0.82);
+    --footer-background: #1e1e1e;
+    --footer-border: rgba(255, 255, 255, 0.1);
+    --footer-text: #bbbbbb;
   }
 }
 
@@ -100,6 +109,9 @@
 
 html {
   font-size: 16px;
+  font-family: var(--font-base);
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 body {
@@ -107,7 +119,8 @@ body {
   font-family: var(--font-base);
   background-color: var(--color-background);
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.4;
+  font-weight: 400;
 }
 
 img {
@@ -144,33 +157,41 @@ h3,
 h4 {
   margin-top: 0;
   color: var(--color-text);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-family: var(--font-base);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 
 h1 {
   font-size: clamp(2.6rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 h2 {
   font-size: clamp(2rem, 3vw, 2.7rem);
+  font-weight: 600;
 }
 
 h3 {
   font-size: clamp(1.35rem, 2vw, 1.7rem);
+  font-weight: 500;
 }
 
 h4 {
   font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   color: var(--color-secondary);
+  text-transform: none;
 }
 
 p {
   margin: 0 0 1.2rem;
-  color: var(--color-text-muted);
-  font-size: 1.05rem;
+  color: var(--color-text);
+  font-size: 1.08rem;
+  font-weight: 400;
 }
 
 ul {
@@ -211,11 +232,12 @@ ul {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0.35rem 0.7rem;
-  background-color: var(--brand-mark-background);
-  border-radius: 12px;
+  /* remove boxed background and padding so the logo sits flush on the header */
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
 }
 
 .site-brand__mark picture,
@@ -238,7 +260,8 @@ ul {
   line-height: 0.95;
   letter-spacing: 0.04em;
   font-size: 0.92rem;
-  text-transform: uppercase;
+  font-family: var(--font-base);
+  text-transform: none;
 }
 
 .site-brand--fallback .site-brand__mark {
@@ -301,8 +324,11 @@ ul {
 .hero::after {
   content: "";
   position: absolute;
-  inset: 0;
-  border: 6px solid var(--hero-border-color);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: var(--hero-border-color);
   pointer-events: none;
 }
 
@@ -364,8 +390,8 @@ ul {
   justify-content: center;
   padding: 0.9rem 1.9rem;
   border-radius: 999px;
-  border: 2px solid var(--color-secondary);
-  background-color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary);
   color: var(--color-text-inverse);
   font-weight: 600;
   text-transform: uppercase;
@@ -375,19 +401,41 @@ ul {
 
 .btn:hover,
 .btn:focus-visible {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  background-color: #276a97;
+  border-color: #276a97;
+  color: var(--color-text-inverse);
 }
 
 .btn--secondary {
   background-color: transparent;
   border-color: var(--color-primary);
   color: var(--color-primary);
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus-visible {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  text-decoration: none;
 }
 
 .hero .btn--secondary {
-  border-color: var(--hero-text-primary);
-  color: var(--hero-text-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  text-decoration: none !important;
+}
+
+/* Ensure contrast on hero section for secondary button */
+.hero .btn {
+  text-decoration: none;
+}
+
+/* Ensure contrast on hero section for secondary button */
+.hero .btn--secondary:hover,
+.hero .btn--secondary:focus-visible {
+  color: var(--color-text-inverse);
 }
 
 .btn--ghost {
@@ -396,12 +444,19 @@ ul {
   color: var(--color-primary);
   padding-left: 0;
   padding-right: 0;
-  letter-spacing: 0.08em;
+  text-decoration: none;
 }
 
 .btn--ghost:hover,
 .btn--ghost:focus-visible {
-  color: var(--color-secondary);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Only underline links in paragraph text on hover/focus */
+p a:hover,
+p a:focus-visible {
+  text-decoration: underline;
 }
 
 .section {
@@ -470,14 +525,15 @@ ul {
 
 .fact-card dt {
   font-weight: 600;
-  text-transform: uppercase;
   font-size: 0.82rem;
   color: var(--color-text-muted);
+  font-family: var(--font-base);
 }
 
 .fact-card dd {
   margin: 0.25rem 0 0;
   color: var(--color-text);
+  font-family: var(--font-base);
 }
 
 .feature-list {
@@ -520,6 +576,7 @@ ul {
 }
 
 @media (min-width: 960px) {
+
   .brand-grid,
   .resource-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -581,8 +638,8 @@ ul {
 }
 
 .footer strong {
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+  text-transform: none;
+  letter-spacing: 0.08em;
 }
 
 .footer p {
@@ -603,6 +660,7 @@ ul {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

@@ -6,15 +6,13 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
 <section class="hero">
   <div class="container hero__inner">
     <div>
-      <h1 class="hero__title">Adventure roadbooks, ready today</h1>
+      <h1 class="hero__title">Plot. Navigate. Validate. Standardize.</h1>
       <p class="hero__lead">
-        OpenRoadBook publishes a simple adventure roadbook schema plus baseline tooling so teams
-        can author, validate, and share routes without bespoke software. The roadmap extends toward
-        FIA compliance, competitive rallies, and professional navigation systems.
+        OpenRoadBook is the open standard for rally and adventure navigation. Built for clarity and interoperability, it defines a precise schema, signage-inspired marks, and robust validation for every stage.
       </p>
       <div class="hero__cta">
-        <a class="btn" href="/format/">Explore the format</a>
-        <a class="btn btn--secondary" href="/spec/">Read the specification</a>
+        <a class="btn" href="/format/">Explore the Format</a>
+        <a class="btn btn--secondary" href="/spec/">View Specification</a>
       </div>
     </div>
     <aside class="hero__card">
@@ -22,12 +20,13 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
         <source srcset="/assets/img/orb-wordmark-dark.svg" media="(prefers-color-scheme: dark)" />
         <img src="/assets/img/orb-wordmark.svg" alt="OpenRoadBook wordmark" />
       </picture>
-      <h4>Roadmap</h4>
+      <p class="hero__card-cta">
+        <a class="btn btn--secondary" href="/roadmap/">Check out the roadmap</a>
+      </p>
       <ul class="feature-list">
-        <li><strong>Today:</strong> Adventure-focused schema with example stages and print layouts.</li>
-        <li><strong>Today:</strong> CLI scripts to parse, validate, and export to PDF or GPX.</li>
-        <li><strong>Next:</strong> FIA-aligned profiles, richer hazard taxonomies, scrutineering checks.</li>
-        <li><strong>Next:</strong> Digital nav reference apps and integrations for pro rally teams.</li>
+        <li><strong>Today:</strong> Adventure-ready schema, signage-based marks, and open validation tools.</li>
+        <li><strong>Next:</strong> FIA-aligned profiles, richer hazard taxonomy, digital nav integrations.</li>
+        <li><strong>Future:</strong> Partner dashboards, telemetry, and pro rally extensions.</li>
       </ul>
     </aside>
   </div>
@@ -37,18 +36,18 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
   <div class="container split">
     <div>
       <div class="section__header">
-        <h2>Why start with simple adventure roadbooks?</h2>
+        <h2>What OpenRoadBook provides</h2>
         <p>
-          We want organizers and riders to create and test stages without pro-level infrastructure. Version 0
-          captures distance, CAP, tulips, hazards, and attachments in plain YAML so you can print, export, and
-          remix routes with minimal tooling.
+          The project specifies a clear file structure, a symbol registry, and a validation surface so
+          authors and tools can exchange roadbooks reliably. The current release targets adventure and
+          non-competitive events while providing extension points for competitive profiles.
         </p>
       </div>
       <ul class="feature-list">
-        <li>Adventure-first YAML schema with JSON mirrors for automation.</li>
-        <li>Baseline CLI validates entries, renders PDFs, and exports GPX handoffs.</li>
-        <li>Example library covering weekend rides, training loops, and practice stages.</li>
-        <li>Reserved extension slots so FIA and pro rally requirements land cleanly.</li>
+  <li>Canonical YAML structure (with JSON equivalents) for human and machine use.</li>
+  <li>Reference tooling and templates for validation, export, and rendering.</li>
+  <li>Example roadbooks that serve as templates and test fixtures.</li>
+  <li>Versioned extension points so higher-assurance profiles (e.g., FIA) can be added compatibly.</li>
       </ul>
     </div>
     <aside class="fact-card" aria-labelledby="roadmap-heading">
@@ -78,10 +77,11 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
 <section id="pillars" class="section">
   <div class="container">
     <div class="section__header">
-      <h2>Interoperability pillars</h2>
+      <h2>Design principles</h2>
       <p>
-        These pillars make the adventure release usable today while keeping hooks open for FIA-grade,
-        professional workflows as we evolve the spec.
+        OpenRoadBook focuses on predictable structure, explicit units, and stable identifiers so
+        data can be validated, rendered, and transformed by independent tools without losing
+        meaning.
       </p>
     </div>
     <div class="resource-grid">
@@ -116,11 +116,11 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
 <section id="audience" class="section section--surface-alt">
   <div class="container">
     <div class="section__header">
-      <h2>Who uses OpenRoadBook?</h2>
+      <h2>Intended audience</h2>
       <p>
-        Today’s schema keeps weekend rides, training loops, and demo rallies consistent. As we add
-        FIA-ready profiles, these same roles inherit pro-grade capabilities without reinventing
-        their workflows.
+        The format is intended for event organizers, competitors, software developers, and tool
+        builders who need a shared, machine-validated description of stages and instructions.
+        Profiles let the same base format meet different assurance and compliance needs.
       </p>
     </div>
     <div class="audience-grid">
@@ -159,10 +159,11 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
 <section id="resources" class="section">
   <div class="container">
     <div class="section__header">
-      <h2>Get the documents</h2>
+      <h2>Primary resources</h2>
       <p>
-        Start with the adventure-focused format, reference the draft specification, and track the
-        roadmap that leads to FIA-ready, professional deployments.
+        Start with the format overview to learn the file layout and symbol registry. Use the
+        specification for normative rules and validation requirements, and the demo roadbook as a
+        working template.
       </p>
     </div>
     <div class="resource-grid">
@@ -172,6 +173,13 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
           Symbols, schema anatomy, and implementation notes for the current adventure release.
         </p>
         <a class="btn" href="/format/">Explore the format</a>
+      </article>
+      <article class="resource-card">
+        <h3>Quick start</h3>
+        <p>
+          A runnable walkthrough: download the demo file, validate it, edit, and export. Ideal for getting started.
+        </p>
+        <a class="btn btn--ghost" href="/quick-start/">Try the quick start</a>
       </article>
       <article class="resource-card">
         <h3>Specification</h3>
@@ -202,10 +210,11 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
 <section id="assets" class="section section--surface">
   <div class="container">
     <div class="section__header">
-      <h2>Where the community is heading</h2>
+      <h2>Contributing & governance</h2>
       <p>
-        We’re moving from a lightweight adventure release toward professional rally operations.
-        Contribute where you have expertise—symbols, validation, converters, or governance.
+        The project is community-driven. Contributions that improve the registry, validation
+        coverage, converters, or documentation are welcome. Governance and versioning policies
+        are documented in the repository.
       </p>
     </div>
     <div class="resource-grid">

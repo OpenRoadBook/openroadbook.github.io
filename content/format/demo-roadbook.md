@@ -7,10 +7,11 @@ slug: "demo-roadbook"
 <section class="hero">
   <div class="container hero__inner">
     <div>
-      <h1 class="hero__title">Montseny sample roadbook</h1>
+      <h1 class="hero__title">Montseny — demo roadbook</h1>
       <p class="hero__lead">
-        Use this demo to explore how a complete adventure-stage OpenRoadBook file is structured.
-        Download the sources, inspect the metadata, and run validation against the canonical JSON Schema.
+        A complete example roadbook that demonstrates meta blocks, stages, entries, and extensions.
+        Use it as a template or test fixture: validate it against the published JSON Schema and
+        adapt the structure for your event.
       </p>
       <div class="hero__cta">
         <a class="btn" href="/demos/demo.orb.yaml">Download demo.orb.yaml</a>
@@ -33,10 +34,10 @@ slug: "demo-roadbook"
   <div class="container split">
     <div>
       <div class="section__header">
-        <h2>Quick metadata tour</h2>
+        <h2>Metadata</h2>
         <p>
-          The demo file represents a circular day route around the Montseny and Guilleries ranges.
-          It demonstrates how to populate the <code>meta</code> block that every OpenRoadBook document requires.
+          The `meta` block declares format, version, units, and event-level details. Keep these fields
+          accurate: tools use them for validation, unit interpretation, and rendering.
         </p>
       </div>
       <ul class="feature-list">
@@ -79,11 +80,11 @@ slug: "demo-roadbook"
 <section class="section">
   <div class="container">
     <div class="section__header">
-      <h2>Inside the stage</h2>
+      <h2>Stage structure</h2>
       <p>
-        The main stage (<code>montseny</code>) contains a trunk of sequential instructions and optional branches. Each
-        instruction highlights a different facet of the schema: tulip symbols, road transitions, locations,
-        timing metadata, and tags.
+        A stage contains an ordered trunk of instructions (entries). Each entry references a symbol
+        ID, a cumulative distance, and optional fields such as heading, waypoint coordinates, or
+        tags. Branches or alternatives reuse the same entry shape and can be named and rejoined.
       </p>
     </div>
     <div class="brand-grid">
@@ -119,12 +120,11 @@ slug: "demo-roadbook"
   <div class="container split">
     <div>
       <div class="section__header">
-        <h2>Validate locally</h2>
+        <h2>Validation</h2>
         <p>
-          The JSON Schema published at <code>https://openroadbook.com/schemas/orb.schema.json</code>
-          is Draft 2020‑12 compliant. Most validator CLIs and libraries can fetch it directly via its <code>$id</code>.
-          If you need a frozen revision, grab the versioned snapshot at
-          <code>https://openroadbook.com/schemas/1.0/orb.schema.json</code>.
+          Use the published JSON Schema to check conformance before sharing. The schema is
+          resolver-friendly (it includes a `$id`) and versioned snapshots are available for pinning
+          builds. Validation catches type errors, out-of-range values, and unknown symbol IDs.
         </p>
       </div>
       <pre><code>npx ajv validate \
@@ -163,11 +163,10 @@ slug: "demo-roadbook"
 <section class="section">
   <div class="container split">
     <div>
-      <h2>Use it as a template</h2>
+      <h2>Using the demo</h2>
       <p>
-        Duplicate the demo file when drafting new stages: adjust the metadata, replace the route instructions,
-        and keep the structure untouched for maximum compatibility. Running validation before sharing keeps your
-        documents ready for tooling pipelines.
+        Copy the demo as a starting point when authoring new stages. Edit `meta` and `entries`, run schema
+        validation, and publish the resulting file alongside any custom extensions or renderer settings.
       </p>
     </div>
     <div>
