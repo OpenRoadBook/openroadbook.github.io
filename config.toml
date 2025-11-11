@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "OpenRoadBook"
 paginate = 10
 enableRobotsTXT = true
-googleAnalyticsID = "G-4HPG3G3WNC"
 
 [markup]
   [markup.goldmark]
@@ -12,3 +11,4 @@ googleAnalyticsID = "G-4HPG3G3WNC"
 
 [params]
   lastUpdated = "29 Oct 2025"
+  googleAnalyticsID = "G-4HPG3G3WNC"
