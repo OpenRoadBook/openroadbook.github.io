@@ -8,7 +8,7 @@
     },
     "ghcr.io/devcontainers/features/git:1": {}
   },
-  "forwardPorts": [1313],
+  "appPort": [1313],
   "portsAttributes": {
     "1313": {
       "label": "Hugo server",
