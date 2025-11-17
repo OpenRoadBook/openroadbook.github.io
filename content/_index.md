@@ -15,7 +15,7 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
 <a class="btn btn--secondary" href="/spec/">View Specification</a>
 </div>
 </div>
-<aside class="hero__card">
+    <aside class="hero__card hero__card--inset">
 <div class="hero__card-visual">
         {{< hero_card_artwork >}}
 </div>
