@@ -12,3 +12,9 @@ enableRobotsTXT = true
 [params]
   lastUpdated = "29 Oct 2025"
   googleAnalyticsID = "G-4HPG3G3WNC"
+
+[menu]
+  [[menu.main]]
+    name = "Spec"
+    url = "/spec/"
+    weight = 20

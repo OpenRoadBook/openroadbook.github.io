@@ -132,8 +132,8 @@ stages:
     branches:
       - id: skip_guilleries
         note: Skip Guilleries loop, straight to Arbúcies
-        start: viladrau_junction # Where the alternative branches off from
-        # end: ~ # if missing or null, means the branch does not return to the main route
+        # branches do not carry a `start` - they begin where they are invoked
+        continue_to: guilleries#gi-541
         tulip:
           symbol: junction.turn_left # Tulip for the alternative branch
         instructions: # Start after the branch start point
@@ -161,9 +161,8 @@ stages:
               next: GI-543
 
       - id: shorten_guilleries
-        start: viladrau_junction
-        end: guilleries#gi-541
         note: Shorten Guilleries loop, straight to Sant Hilari
+        continue_to: guilleries#gi-541
         instructions:
           - distance: 33.50
             time_stage: PT58M

@@ -126,8 +126,7 @@
         "id": { "type": "string", "minLength": 1 },
         "name": { "type": "string" },
         "note": { "type": "string" },
-        "start": { "type": "string" },
-        "end": { "type": ["string", "null"] },
+        "continue_to": { "type": ["string", "null"], "description": "Optional instruction id to link to after the branch finishes (informational)." },
         "tulip": { "$ref": "#/$defs/tulip" },
         "instructions": {
           "type": "array",
@@ -177,7 +176,28 @@
         "note": { "type": "string" },
         "alternatives": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "oneOf": [
+              { "$ref": "#/ $defs/alternative_skip" },
+              { "$ref": "#/ $defs/alternative_branch_ref" }
+            ]
+          },
+          "description": "Informational list of alternatives starting at this instruction. Items can be skip entries or branch references."
+        },
+        "time": {
+          "description": "Optional time constraint or hint. Can be a simple string (HH:MM or PT...) or an object with earliest/latest bounds.",
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "earliest": { "type": "string", "description": "Earliest allowed time (PT... or HH:MM/T...)" },
+                "latest": { "type": "string", "description": "Latest allowed time (PT... or HH:MM/T...)" }
+              },
+              "minProperties": 1
+            }
+          ]
         },
         "symbols": {
           "type": "array",
@@ -218,6 +238,36 @@
         "plus": { "type": "string" },
         "w3w": { "type": "string" }
       }
+    }
+    ,
+    "alternative_skip": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "skip_to": { "type": "string", "description": "Instruction id to jump to (navigation-only)." },
+        "next_road": { "type": "string" },
+        "tulip": { "$ref": "#/$defs/tulip" },
+        "note": { "type": "string" }
+      },
+      "required": ["skip_to"]
+    },
+    "alternative_branch_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "branch": { "type": "string", "description": "Reference a stage-level branch id." },
+        "note": { "type": "string" }
+      },
+      "required": ["branch"]
+    },
+    "time_constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "enum": ["no-earlier-than", "no-later-than"] },
+        "time": { "type": "string", "description": "Either an ISO8601 duration (PT...) relative to stage start or an ISO8601 time/date (T14:30 or full date-time)." }
+      },
+      "required": ["type", "time"]
     }
   }
 }
