@@ -16,18 +16,19 @@ description: "OpenRoadBook is an open interoperability format for rally and adve
       </div>
     </div>
     <aside class="hero__card">
-      <picture>
-        <source srcset="/assets/img/orb-wordmark-dark.svg" media="(prefers-color-scheme: dark)" />
-        <img src="/assets/img/orb-wordmark.svg" alt="OpenRoadBook wordmark" />
-      </picture>
-      <p class="hero__card-cta">
-        <a class="btn btn--secondary" href="/roadmap/">Check out the roadmap</a>
-      </p>
-      <ul class="feature-list">
-        <li><strong>Today:</strong> Adventure-ready schema, signage-based marks, and open validation tools.</li>
-        <li><strong>Next:</strong> FIA-aligned profiles, richer hazard taxonomy, digital nav integrations.</li>
-        <li><strong>Future:</strong> Partner dashboards, telemetry, and pro rally extensions.</li>
-      </ul>
+      <div class="hero__card-visual">
+        {{< hero_card_artwork >}}
+      </div>
+      <div class="hero__card-content">
+        <p class="hero__card-cta">
+          <a class="btn btn--secondary" href="/roadmap/">Check out the roadmap</a>
+        </p>
+        <ul class="feature-list">
+          <li><strong>Today:</strong> Adventure-ready schema, signage-based marks, and open validation tools.</li>
+          <li><strong>Next:</strong> FIA-aligned profiles, richer hazard taxonomy, digital nav integrations.</li>
+          <li><strong>Future:</strong> Partner dashboards, telemetry, and pro rally extensions.</li>
+        </ul>
+      </div>
     </aside>
   </div>
 </section>

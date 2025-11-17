@@ -367,21 +367,45 @@ ul {
 
 .hero__card {
   background-color: var(--hero-card-background);
-  padding: 2rem;
   border-radius: 1rem;
   border: 2px solid var(--hero-card-border);
-  display: grid;
-  gap: 1.4rem;
   color: var(--color-text);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero__card h4 {
   margin: 0;
 }
 
-.hero__card img {
-  width: min(320px, 90%);
-  margin: 0 auto;
+.hero__card-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__card-visual picture,
+.hero__card-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero__card-visual::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(8, 11, 22, 0) 0%, var(--hero-card-background) 100%);
+}
+
+.hero__card-content {
+  padding: 2rem;
+  display: grid;
+  gap: 1.4rem;
 }
 
 .btn {
