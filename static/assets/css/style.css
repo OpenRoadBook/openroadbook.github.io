@@ -671,9 +671,32 @@ p a:focus-visible {
 
 @media (min-width: 720px) {
   .footer__inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
   }
+}
+
+.footer__col {
+  min-width: 0;
+}
+
+.footer__heading {
+  margin: 0 0 0.4rem 0;
+  font-size: 1rem;
+  color: var(--footer-text);
+  font-weight: 800;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  color: var(--color-accent);
+}
+
+.footer__contact .footer__link {
+  display: inline-flex;
+  align-items: center;
 }
 
 .footer strong {
