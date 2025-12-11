@@ -52,6 +52,27 @@ branches:
         location: { name: "Twisty road" }
       - distance: 120.0
         location: { name: "Beautiful views" }
+
+An optional `impact` object can provide summary information about a branch to help user interfaces display alternatives:
+
+```yaml
+branches:
+  - id: B1
+    note: "Scenic unpaved shortcut"
+    impact:
+      time: PT4H27M
+      distance: 248
+      pros:
+        - scenic
+      cons:
+        - time
+        - distance
+    instructions:
+      - distance: 100.0
+        location: { name: "Dirt track" }
+      - distance: 348.0
+        location: { name: "Rejoin point" }
+```
 ```
 
 `branch` entries can supply full instruction lists (and optionally `continue_to` to signal where they rejoin the trunk).

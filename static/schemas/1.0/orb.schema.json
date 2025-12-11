@@ -127,6 +127,33 @@
         "name": { "type": "string" },
         "note": { "type": "string" },
         "continue_to": { "type": ["string", "null"], "description": "Optional instruction id to link to after the branch finishes (informational)." },
+        "impact": {
+          "description": "Optional structured description of the consequences of taking this branch. All values are relative to the route being diverged from.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "time": {
+              "description": "ISO8601 duration (e.g. 'PT4H27M') representing additional time relative to the trunk. May be negative if the branch is faster.",
+              "type": "string",
+              "pattern": "^-?PT"
+            },
+            "distance": {
+              "description": "Numeric distance delta relative to the trunk. Units are taken from `meta.units.distance`.",
+              "type": "number"
+            },
+            "pros": {
+              "description": "List of brief positive attributes or tags for the branch (arbitrary strings).",
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "cons": {
+              "description": "List of brief negative attributes or tags for the branch (arbitrary strings).",
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "minProperties": 1
+        },
         "tulip": { "$ref": "#/$defs/tulip" },
         "instructions": {
           "type": "array",
