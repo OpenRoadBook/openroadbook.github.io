@@ -1,0 +1,98 @@
+{{/* Accept either a page context (original) or a dict { "page": PAGE, "hero": HERO } passed from layouts */}}
+{{ $page := . }}
+{{ $hero := .Params.hero }}
+{{ if and (isset . "page") (isset . "hero") }}
+  {{ $page = .page }}
+  {{ if isset . "hero" }}
+    {{ $hero = .hero }}
+  {{ end }}
+{{ end }}
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero-left">
+      <h1 class="hero__title">{{ $page.Title }}</h1>
+      {{ with $hero.lead }}<p class="hero__lead">{{ . | markdownify }}</p>{{ end }}
+      {{ with $hero.ctas }}
+        <div class="hero__cta">
+        {{ range . }}
+          <a class="{{ with .style }}{{ . }}{{ else }}btn{{ end }}" href="{{ .url }}">{{ .text }}</a>
+        {{ end }}
+        </div>
+      {{ end }}
+      {{/* render optional `hero.more` sequence (each item may have list and ctas) under lead/CTAs */}}
+      {{ with $hero.more }}
+        {{ range . }}
+          {{ with .list }}
+            <ul class="feature-list feature-list--more">
+              {{ range . }}
+                <li>{{ . | markdownify }}</li>
+              {{ end }}
+            </ul>
+          {{ end }}
+          {{ with .ctas }}
+            <div class="hero__cta hero__cta--more">
+              {{ range . }}
+                <a class="{{ with .style }}{{ . }}{{ else }}btn{{ end }}" href="{{ .url }}">{{ .text }}</a>
+              {{ end }}
+            </div>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ with $hero.list }}
+        <ul class="feature-list" aria-hidden="false">
+        {{ $t := printf "%T" . }}
+        {{ if ne $t "string" }}
+          {{ range . }}
+            <li>{{ . | markdownify }}</li>
+          {{ end }}
+        {{ else }}
+          {{/* treat as block scalar with lines */}}
+          {{ $lines := split . "\n" }}
+          {{ range $lines }}
+            {{ if ne (trim . " \t\n\r") "" }}<li>{{ . | markdownify }}</li>{{ end }}
+          {{ end }}
+        {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+    {{/* Sidebar: render only when sidebar has content */}}
+    {{ $sidebar := $hero.sidebar }}
+    {{ $hasSidebar := and (ne (printf "%v" $sidebar) "<nil>") (or (isset $sidebar "image") (isset $sidebar "title") (isset $sidebar "text") (isset $sidebar "cta")) }}
+    {{ if $hasSidebar }}
+      {{ $inset := or (isset $sidebar "image") (eq (or $sidebar.layout "default") "inset") }}
+      <aside class="hero__card hero-right{{ if $inset }} hero__card--inset{{ end }}">
+        {{ if isset $sidebar "image" }}
+          <div class="hero__card-visual">
+            {{ $img := $sidebar.image }}
+            {{ if eq $img "hero-artwork" }}
+              {{ partial "hero_artwork.html" $page }}
+            {{ else }}
+              <picture class="hero__card-artwork">
+                <source srcset="/assets/img/{{ $img }}-dark.png" media="(prefers-color-scheme: dark)">
+                <source srcset="/assets/img/{{ $img }}-light.png" media="(prefers-color-scheme: light)">
+                <img src="/assets/img/{{ $img }}-light.png" alt="{{ with $sidebar.image_alt }}{{ . }}{{ else }}Illustration{{ end }}" loading="lazy" decoding="async" />
+              </picture>
+              {{ with $sidebar.title }}
+                <div class="hero__card-artwork-overlay"><h4>{{ . }}</h4></div>
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+        <div class="hero__card-content">
+          {{ with $sidebar.cta }}
+            <p class="hero__card-cta">
+              <a class="{{ with .style }}{{ . }}{{ else }}btn{{ end }}" href="{{ .url }}">{{ .text }}</a>
+            </p>
+          {{ end }}
+          {{ with $sidebar.title }}
+            <h4>{{ . }}</h4>
+          {{ end }}
+          {{ with $sidebar.text }}
+            <p>{{ . | markdownify }}</p>
+          {{ end }}
+        </div>
+      </aside>
+    {{ end }}
+  </div>
+</section>

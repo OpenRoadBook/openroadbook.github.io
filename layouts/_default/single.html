@@ -1,3 +1,10 @@
 {{ define "main" }}
-  {{ .Content }}
+  {{ if .Params.hero }}
+    {{ partial "hero.html" . }}
+  {{ end }}
+  <div class="container">
+    <div class="content__left">
+      {{ .Content }}
+    </div>
+  </div>
 {{ end }}

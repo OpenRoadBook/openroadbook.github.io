@@ -1,0 +1,27 @@
+{{ define "main" }}
+  {{ $hero := .Params.hero }}
+  {{ if not $hero }}
+    {{ $hero = .Site.Data.home.hero }}
+  {{ end }}
+  {{ if $hero }}
+    {{ partial "hero.html" (dict "page" . "hero" $hero) }}
+  {{ end }}
+
+  {{ $sections := .Params.sections }}
+  {{ if not $sections }}
+    {{ $sections = .Site.Data.home.sections }}
+  {{ end }}
+
+  {{ if .Content }}
+    <div class="container">
+      <div class="content__left">
+        {{ .Content | safeHTML }}
+      </div>
+    </div>
+  {{ else }}
+    {{ range $key, $sec := $sections }}
+      {{ partial "home-section.html" (dict "key" $key "section" $sec) }}
+    {{ end }}
+  {{ end }}
+
+{{ end }}

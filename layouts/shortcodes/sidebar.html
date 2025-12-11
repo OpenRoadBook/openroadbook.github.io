@@ -1,0 +1,6 @@
+<aside class="sidebar-shortcode sidebar-shortcode--inset">
+  {{ with .Get "title" }}<h4 class="sidebar-shortcode__title">{{ . }}</h4>{{ end }}
+  {{ with .Inner }}
+    <div class="sidebar-shortcode__content">{{ . | markdownify }}</div>
+  {{ end }}
+</aside>

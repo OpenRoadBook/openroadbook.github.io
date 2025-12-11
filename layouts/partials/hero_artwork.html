@@ -1,0 +1,48 @@
+{{- $light := resources.Get "img/orb-under_construction-light.png" -}}
+{{- $dark := resources.Get "img/orb-under_construction-dark.png" -}}
+{{- if and $light $dark -}}
+  {{- $widths := slice 480 800 1200 -}}
+  {{- $sizesAttr := "(min-width: 960px) 420px, min(90vw, 520px)" -}}
+  {{- $lightVariants := slice -}}
+  {{- range $widths }}
+    {{- $lightVariants = $lightVariants | append ($light.Resize (printf "%dx" .)) -}}
+  {{- end -}}
+  {{- $lightSrcset := slice -}}
+  {{- range $lightVariants }}
+    {{- $lightSrcset = $lightSrcset | append (printf "%s %dw" .RelPermalink .Width) -}}
+  {{- end -}}
+  {{- $lightSrcsetAttr := delimit $lightSrcset ", " -}}
+  {{- $lightFallback := index $lightVariants (sub (len $lightVariants) 1) -}}
+
+  {{- $darkVariants := slice -}}
+  {{- range $widths }}
+    {{- $darkVariants = $darkVariants | append ($dark.Resize (printf "%dx" .)) -}}
+  {{- end -}}
+  {{- $darkSrcset := slice -}}
+  {{- range $darkVariants }}
+    {{- $darkSrcset = $darkSrcset | append (printf "%s %dw" .RelPermalink .Width) -}}
+  {{- end -}}
+  {{- $darkSrcsetAttr := delimit $darkSrcset ", " -}}
+
+  <picture class="hero__card-artwork">
+    <source srcset="{{ $darkSrcsetAttr }}" sizes="{{ $sizesAttr }}" media="(prefers-color-scheme: dark)">
+    <img
+      src="{{ $lightFallback.RelPermalink }}"
+      srcset="{{ $lightSrcsetAttr }}"
+      sizes="{{ $sizesAttr }}"
+      alt="Illustration showing OpenRoadBook development underway"
+      loading="lazy"
+      decoding="async"
+      width="{{ $lightFallback.Width }}"
+      height="{{ $lightFallback.Height }}"
+    />
+  </picture>
+{{- else -}}
+  <img
+    src="/assets/img/orb-under_construction-light.png"
+    alt="Illustration showing OpenRoadBook development underway"
+    class="hero__card-artwork-fallback"
+    loading="lazy"
+    decoding="async"
+  />
+{{- end -}}

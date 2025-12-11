@@ -1,0 +1,22 @@
+principles:
+  - title: Structured data model
+    body: |
+      Define distance, CAP, tulips, hazards, and attachments with predictable types. Upcoming profiles add timing, penalties, and pro rally metadata without breaking compatibility.
+    cta:
+      text: "See data model"
+      url: "/format/#data-model"
+      style: "btn btn--ghost"
+  - title: Symbol registry
+    body: |
+      Reference hazards, services, and surfaces by ID using open SVG assets. Roadmapped updates expand the registry for FIA sites, competitive hazards, and localization.
+    cta:
+      text: "Browse symbols"
+      url: "/format/#symbol-registry"
+      style: "btn btn--ghost"
+  - title: Validation & tooling
+    body: |
+      CLI tooling validates YAML, exports GPX, and renders printable layouts. The next wave adds scrutineering automation, conversion pipelines, and digital navigation sync.
+    cta:
+      text: "Validation guidance"
+      url: "/spec/#validation"
+      style: "btn btn--ghost"

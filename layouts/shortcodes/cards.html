@@ -1,0 +1,30 @@
+{{/* Usage: {{< cards ref="assets" class="cards" >}} */}}
+{{ $key := .Get "ref" }}
+{{ if not $key }}
+  {{ errorf "cards shortcode requires a 'ref' key referencing data/cards.yaml (e.g. ref=\"assets\")" }}
+{{ end }}
+
+{{ $cls := .Get "class" | default "cards" }}
+
+{{ $data := index site.Data "cards" $key }}
+{{ if not $data }}
+  <div class="{{ $cls }} cards--empty">No cards found for '{{ $key }}' in data/cards/</div>
+{{ else }}
+  {{/* If the YAML file is namespaced (e.g. audience: [ ... ]) Hugo returns a map with that key. Normalize to the slice. */}}
+  {{ $cards := slice }}
+  {{ $maybe := index $data $key }}
+  {{ if $maybe }}
+    {{ $cards = $maybe }}
+  {{ else }}
+    {{ $cards = $data }}
+  {{ end }}
+  <ul class="{{ $cls }}" role="list">
+    {{ range $cards }}
+      <li class="card" role="listitem">
+        <h3>{{ .title }}</h3>
+        <p>{{ .body }}</p>
+        {{ with .cta }}<p><a class="{{ .style }}" href="{{ .url }}">{{ .text }}</a></p>{{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

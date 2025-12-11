@@ -1,0 +1,78 @@
+{{/* Render a homepage section. Expects dict { "key": KEY, "section": SECTION } */}}
+{{ $key := .key }}
+{{ $sec := .section }}
+
+<section id="{{ $key }}" class="section {{ if or (eq $key "overview") (eq $key "assets") }}section--surface{{ end }}">
+  <div class="container">
+    <div class="home__inner">
+      <div class="home__left">
+        {{ with $sec.title }}<div class="section__header"><h2>{{ . }}</h2>{{ with $sec.lead }}<p>{{ . }}</p>{{ end }}</div>{{ end }}
+
+        {{/* Prefer a block of markdown provided in `text` */}}
+        {{ if $sec.text }}
+          <div class="home__text">{{ $sec.text | markdownify }}</div>
+        {{ else if $sec.lead }}
+          {{/* lead already printed above for title-case sections */}}
+        {{ end }}
+
+        {{ with $sec.bullets }}
+          <ul class="feature-list">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+        {{ end }}
+
+        {{ with $sec.cards }}
+          <ul class="cards">
+            {{ range . }}
+              <li class="card">
+                <h3>{{ .title }}</h3>
+                <p>{{ .body }}</p>
+                {{ with .cta }}<p><a class="{{ .style }}" href="{{ .url }}">{{ .text }}</a></p>{{ end }}
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </div>
+
+      <aside class="home__right">
+        {{/* Several section shapes: fact_card, sidebar, or cards for right column */}}
+        {{ if $sec.fact_card }}
+          <aside class="fact-card" aria-labelledby="{{ $key }}-heading">
+            <h3 id="{{ $key }}-heading">{{ $sec.fact_card.title }}</h3>
+            <dl>
+              {{ range $sec.fact_card.items }}
+                <div>
+                  <dt>{{ .label }}</dt>
+                  <dd>{{ .value }}</dd>
+                </div>
+              {{ end }}
+            </dl>
+          </aside>
+        {{ else if $sec.sidebar }}
+          {{ with $sec.sidebar }}
+            <aside class="sidebar-shortcode sidebar-shortcode--inset">
+              {{ with .title }}<h4 class="sidebar-shortcode__title">{{ . }}</h4>{{ end }}
+              {{ with .text }}<div class="sidebar-shortcode__content">{{ . | markdownify }}</div>{{ end }}
+              {{ with .list }}
+                <ul class="sidebar-list">
+                  {{ range . }}
+                    <li>
+                      <span class="sidebar-list__key">{{ .label }}</span>
+                      <span class="sidebar-list__value">{{ .value }}</span>
+                    </li>
+                  {{ end }}
+                </ul>
+              {{ end }}
+            </aside>
+          {{ end }}
+        {{ else if $sec.cards_right }}
+          <div>
+            <ul class="cards">
+              {{ range $sec.cards_right }}<li class="card"><h3>{{ .title }}</h3><p>{{ .body }}</p></li>{{ end }}
+            </ul>
+          </div>
+        {{ end }}
+      </aside>
+    </div>
+  </div>
+</section>

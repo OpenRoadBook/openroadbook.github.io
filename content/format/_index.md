@@ -1,257 +1,431 @@
 ---
-title: "Format Overview"
-description: "Learn how the OpenRoadBook adventure format structures entries, symbols, and tasks while leaving room for FIA and competitive extensions."
+title: Format Overview
+description: Learn how the OpenRoadBook adventure format structures entries, symbols, and tasks while leaving room for FIA and competitive extensions.
+hero:
+  lead: "The OpenRoadBook standard establishes a file layout, core fields, and symbol registry to be used for roadbooks. The current release targets adventure and non-competitive events; profiles provide a path to other disciplines without changing the base structure."
+  ctas:
+    - text: "Usage guide"
+      url: "/format/"
+    - text: "Symbol registry"
+      url: "#symbol-registry"
+      style: "btn btn--secondary"
+  card:
+    title: "Key ingredients"
+    list:
+      - "**Today:** Distance, CAP, tulip, notes, and hazard fields for adventure stages."
+      - "**Today:** CLI tooling plus templates to validate, print, and export to GPX."
+      - "**Next:** FIA-ready profiles with penalties, scrutineering, and timing metadata."
 ---
 
-<section class="hero">
-  <div class="container hero__inner">
-<div>
-<h1 class="hero__title">Format overview</h1>
-<p class="hero__lead">
-        This OpenRoadBook standard establishes a file layout, core fields, and symbol registry to be used for roadbooks. The current release targets adventure and non-competitive events; profiles
-        provide a path to other disciplines without changing the base structure.
-</p>
-<div class="hero__cta">
-<a class="btn" href="#data-model">Data model</a>
-<a class="btn btn--secondary" href="#symbol-registry">Symbol registry</a>
-</div>
-</div>
-<aside class="hero__card">
-<h4>Key ingredients</h4>
-<ul class="feature-list">
-<li><strong>Today:</strong> Distance, CAP, tulip, notes, and hazard fields for adventure stages.</li>
-<li><strong>Today:</strong> CLI tooling plus templates to validate, print, and export to GPX.</li>
-<li><strong>Next:</strong> FIA-ready profiles with penalties, scrutineering, and timing metadata.</li>
-</ul>
-</aside>
-  </div>
-</section>
+## Quick start — the smallest valid ORB {#quick-start}
 
-<section id="overview" class="section section--surface">
-  <div class="container split">
-<div>
-<div class="section__header">
-<h2>Purpose</h2>
-<p>
-          Provide a single, unambiguous file format for describing stages and navigation
-          instructions so authors and tools can interoperate. The format emphasises explicit units,
-          stable symbol IDs, and a small set of well-defined fields.
-</p>
-</div>
-<ul class="feature-list">
-  <li>Single source of truth for printed roadbooks, GPS exports, and digital renderers.</li>
-  <li>Readable by humans (YAML) and consumable by machines (JSON/validation).</li>
-  <li>Profiles and extensions for different assurance levels without breaking existing files.</li>
-</ul>
-</div>
-<aside class="fact-card">
-<h3>Status snapshot</h3>
-<dl>
-<div>
-<dt>Current focus</dt>
-<dd>Adventure schema in YAML 1.2 with JSON mirrors for automation.</dd>
-</div>
-<div>
-<dt>Tooling shipped</dt>
-<dd>Validator CLI, GPX exporter, printable templates, and example sets.</dd>
-</div>
-<div>
-<dt>Registry</dt>
-<dd>Stable symbol IDs backed by open SVG artwork and metadata.</dd>
-</div>
-<div>
-<dt>Coming soon</dt>
-<dd>FIA profile, penalties, scrutineering metadata, and telemetry hooks.</dd>
-</div>
-</dl>
-</aside>
-  </div>
-</section>
+An OpenRoadBook (ORB) document is a YAML file with a `meta` block and one or more `stages` (or a top-level `entries`) list. The minimal, valid structure looks like:
 
-<section id="data-model" class="section">
-  <div class="container">
-<div class="section__header">
-<h2>Data model</h2>
-<p>
-      The data model describes an ordered sequence of entries (instructions) with well-typed
-      fields. Authors supply distances, symbol references (tulips), headings (CAP), notes, and
-      optional coordinates or metadata used by renderers and converters.
-</p>
-</div>
-<div class="brand-grid">
-<article class="brand-card">
-<h3>Entry fields</h3>
-<ul>
-<li><strong>km</strong> · cumulative distance (float, kilometers)</li>
-<li><strong>tulip</strong> · symbolic ID for navigation diagram</li>
-<li><strong>cap</strong> · heading 0–359 (integer)</li>
-<li><strong>notes</strong> · free text instructions</li>
-<li><strong>symbols</strong> · array of registry IDs</li>
-<li><strong>waypoint</strong> · optional GPS coordinate pair</li>
-<li><strong>speed_limit</strong> · optional integer in km/h</li>
-</ul>
-</article>
-<article class="brand-card">
-<h3>Profiles &amp; extensions</h3>
-<p>
-          Profiles tailor the schema to different environments while preserving compatibility.
-          Unknown fields are preserved for forward compatibility.
-</p>
-<ul>
-<li><strong>FIA profile:</strong> sticks to Appendix II requirements.</li>
-<li><strong>Adventure profile:</strong> adds <code>tip</code> and <code>landmark</code> text.</li>
-<li><strong>Custom profiles:</strong> append domain-specific metadata via extensions.</li>
-</ul>
-</article>
-<article class="brand-card">
-<h3>Sample entry</h3>
-<pre><code>meta:
+```yaml
+meta:
   format: OpenRoadBook
   version: 1.0
-  event:
-    name: Rally of Exampleland
-    stage: SS1
 
+stages:
+  - id: stage_1
+    title: "Simple test"
+    entries:
+      - km: 0.0
+        tulip: start
+        notes: "Start here"
+```
+
+Save as `my-first.orb.yaml` and validate with the published JSON Schema at `/schemas/orb.schema.json`.
+
+## Event metadata
+
+Add human-friendly event metadata to `meta` so tools can surface and filter content:
+
+```yaml
+meta:
+  format: OpenRoadBook
+  version: 1.0
+  id: orb-demo-001
+  title: "Montseny Demo"
+  date: 2025-11-01
+  units: km
+  profile: adventure
+```
+
+## Common entry fields
+
+Build entries incrementally using the following fields:
+
+- `km` — cumulative distance (float, in `meta.units`).
+- `tulip` — symbolic navigation diagram ID.
+- `cap` — compass heading (0–359).
+- `notes` — human instructions.
+- `symbols` — extra registry IDs such as hazards or services.
+- `waypoint` — optional `{ lat, lon }` for mapping.
+
+Example:
+
+```yaml
 entries:
   - km: 12.35
     tulip: turn_left
     cap: 270
     notes: "Gravel, caution rocks"
     symbols: [danger2, jump]
-    waypoint: { lat: 41.12345, lon: 2.12345 }</code></pre>
-</article>
-</div>
-  </div>
-</section>
+    waypoint: { lat: 41.12345, lon: 2.12345 }
+```
 
-<section id="symbol-registry" class="section section--surface-alt">
-  <div class="container">
-<div class="section__header">
-<h2>Symbol registry</h2>
-<p>
-      The registry maps short IDs to pictograms, categories, and descriptions. Tools should use
-      these IDs for rendering and validation. New symbols append to the registry; existing IDs
-      are never reused.
-</p>
-</div>
-<div class="resource-grid">
-<article class="resource-card">
-<h3>Navigation / Direction</h3>
-<p>Core tulips such as <code>start</code>, <code>finish</code>, <code>turn_left</code>, <code>roundabout</code>.</p>
-</article>
-<article class="resource-card">
-<h3>Hazards</h3>
-<p>Graduated warnings: <code>danger1</code>, <code>danger2</code>, <code>danger3</code>, plus <code>jump</code>, <code>ford</code>, <code>cliff</code>.</p>
-</article>
-<article class="resource-card">
-<h3>Road &amp; surface</h3>
-<p>Surface cues such as <code>tarmac</code>, <code>gravel</code>, <code>sand</code>, <code>offtrack</code>, <code>gate</code>.</p>
-</article>
-<article class="resource-card">
-<h3>Services &amp; controls</h3>
-<p>Logistics touchpoints: <code>fuel</code>, <code>service</code>, <code>speed_limit</code>, <code>neutralization</code>, <code>cp</code>, <code>wp</code>.</p>
-</article>
-<article class="resource-card">
-<h3>Adventure extensions</h3>
-<p>
-          Optional IDs like <code>camp</code>, <code>water</code>, <code>food</code>, <code>scenic</code>, <code>border</code>, and <code>town</code> enrich overland journeys.
-</p>
-</article>
-<article class="resource-card">
-<h3>Registry file</h3>
-<p>
-          Symbol metadata ships in YAML: ID, display name, category, SVG filename, and description.
-</p>
-<pre><code>symbols:
+## Branches & alternatives
+
+Model optional routes using `alternatives` (inline) or `branches` (named blocks).
+
+Inline skip-to alternative:
+
+```yaml
+- id: m10
+  km: 88.8
+  alternatives:
+    - skip_to: m14
+      tulip: { symbol: exit-left }
+```
+
+Named branch:
+
+```yaml
+branches:
+  - id: scenic_route
+    continue_to: m11
+    instructions:
+      - km: 90.1
+        notes: "Twisty road"
+      - km: 120.0
+        notes: "Beautiful views"
+```
+
+## Time windows
+
+Use `time` to provide arrival hints or constraints:
+
+```yaml
+time:
+  earliest: "08:20"
+  latest: "09:20"
+```
+
+Validators can treat `time` as guidance or strict constraints depending on the profile.
+
+## Locations & coordinates
+
+Locations can include names and multiple coordinate formats:
+
+```yaml
+location:
+  name: "Coll de Sant Marçal"
+  lat: 41.345
+  lon: 2.345
+  pluscode: "8FW4V+2V"
+  what3words: "index.card.route"
+```
+
+## Extensions & vendor namespaces
+
+Use namespaced blocks for renderer or analytics extensions. Validators should ignore unknown extension blocks unless a profile requires them.
+
+```yaml
+meta:
+  extensions:
+    corbs.render:
+      preview: true
+    orb.analytics:
+      track: true
+```
+
+## Worked example (demo)
+
+The official demo ORB (`/demos/demo.orb.yaml`) is the canonical worked example. Steps:
+
+1. Inspect `meta` and confirm `profile: adventure` and `units: km`.
+2. Find the stage trunk and identify `branches`/`alternatives`.
+3. Validate with `ajv`:
+
+```bash
+npx ajv validate -s https://openroadbook.com/schemas/orb.schema.json -d demos/demo.orb.yaml --spec=draft2020
+```
+
+4. Make a small edit, revalidate, and render.
+
+## References
+
+- Schema: `/schemas/orb.schema.json`
+- Demo ORB: `/demos/demo.orb.yaml`
+- Specification: `/spec/`
+
+Last updated: 2025-12-10
+
+## Schema examples — concrete snippets for each definition
+
+Below are focused examples that map directly to the JSON Schema definitions. Use them as copy-paste starting points when authoring ORB files.
+
+### `meta` (document-level metadata)
+
+```yaml
+meta:
+  format: OpenRoadBook
+  version: 1.0
+  id: montseny-2025
+  title: "Montseny i Guilleries — Demo"
+  date: 2025-11-01
+  profile: adventure
+  units: km
+  authors:
+    - name: "OpenRoadBook Team"
+      email: team@openroadbook.org
+  labels: [demo, montseny, circular]
+  extensions:
+    corbs.render:
+      preview: true
+```
+
+Fields covered: `format`, `version`, `id`, `title`, `date`, `profile`, `units`, `authors`, `labels`, `extensions`.
+
+### `symbol` registry entry
+
+Registry entries describe a symbol and point to artwork.
+
+```yaml
+symbols:
   - id: danger2
     name: "Danger (2 exclamations)"
     category: hazard
     svg: danger2.svg
-    description: "Serious hazard, reduce speed"</code></pre>
-</article>
-</div>
-  </div>
-</section>
+    description: "Serious hazard — reduce speed"
+```
 
-<section id="roadmap" class="section">
-  <div class="container">
-<div class="section__header">
-<h2>Implementation roadmap</h2>
-<p>
-        Focus areas that help the community publish and adopt the format. Track progress in the
-        public roadmap or spin up working groups for your specialty.
-</p>
-</div>
-<div class="brand-grid">
-<article class="brand-card">
-<h3>Open symbol registry</h3>
-<ul>
-<li>Commission or crowdsource clean-room SVGs.</li>
-<li>Release assets under permissive licenses (CC0/CC-BY).</li>
-<li>Host registry YAML + artwork in a public repository.</li>
-</ul>
-</article>
-<article class="brand-card">
-<h3>Schema validation</h3>
-<ul>
-<li>Publish JSON Schema to validate YAML/JSON inputs.</li>
-<li>Ensure fields use correct types and registry IDs.</li>
-<li>Automate checks in CI before releasing roadbooks.</li>
-</ul>
-</article>
-<article class="brand-card">
-<h3>Reference converters</h3>
-<ul>
-<li>Produce FIA-style PDF output from OpenRoadBook entries.</li>
-<li>Ship GPX/KML converters for GPS devices.</li>
-<li>Demonstrate digital dash integrations.</li>
-</ul>
-</article>
-<article class="brand-card">
-<h3>Governance &amp; versioning</h3>
-<ul>
-<li>Adopt semantic versioning for schema and registry.</li>
-<li>Publish release notes and changelogs transparently.</li>
-<li>Form a working group of organizers, developers, riders.</li>
-</ul>
-</article>
-<article class="brand-card">
-<h3>Documentation &amp; examples</h3>
-<ul>
-<li>Maintain the specification and quick-start guides.</li>
-<li>Share sample YAML roadbooks with rendered PDFs.</li>
-<li>Highlight community toolchains (CORBS, editors, viewers).</li>
-</ul>
-</article>
-</div>
-  </div>
-</section>
+Fields covered: `id`, `name`, `category`, `svg`, `description`.
 
-<section class="section section--surface">
-  <div class="container split">
-<div>
-<h2>What’s next?</h2>
-<p>Format overview &middot; Last updated 29 Oct 2025</p>
-</div>
-<div>
-<a class="btn" href="/spec/">Continue to the specification</a>
-</div>
-  </div>
-</section>
+### `stages` and `entries` (trunk): basic entry
 
-<section class="section">
-  <div class="container split">
-<div>
-<h2>Work through the demo</h2>
-<p>
-        Download the Montseny i Guilleries sample ORB file, validate it against the published schema, and
-        use it as a template for your own stages.
-</p>
-</div>
-<div>
-<a class="btn" href="/format/demo-roadbook/">Open the demo walkthrough</a>
-<a class="btn btn--secondary" href="/demos/demo.orb.yaml">Download the ORB file</a>
-<a class="btn btn--ghost" href="/schemas/orb.schema.json">View the schema</a>
-</div>
-  </div>
-</section>
+```yaml
+stages:
+  - id: ss1
+    title: "Stage 1"
+    entries:
+      - id: e1
+        km: 0.00
+        tulip: start
+        notes: "Start line"
+      - id: e2
+        km: 12.35
+        tulip: turn_left
+        cap: 270
+        notes: "Gravel; caution rocks"
+        symbols: [danger2, jump]
+        speed_limit: 50
+        waypoint:
+          lat: 41.12345
+          lon: 2.12345
+```
+
+Fields covered: `id` (entry), `km`, `tulip` (string), `cap`, `notes`, `symbols` (array), `speed_limit`, `waypoint` (object lat/lon).
+
+### `tulip` as an object (advanced tulip references)
+
+Some schema variants allow a structured tulip object with `symbol` and `mirror`/`variant` hints.
+
+```yaml
+entries:
+  - id: e10
+    km: 42.0
+    tulip:
+      symbol: junction.turn_left
+      variant: sharp
+    notes: "Sharp left at the junction"
+```
+
+Fields covered: `tulip` as object with `symbol` and optional properties.
+
+### `branches` (named alternative routes)
+
+```yaml
+branches:
+  - id: scenic_route
+    note: "Scenic unpaved alternative"
+    impact:
+      distance: 248
+      time: PT4H27M
+      pros: [scenic]
+      cons: [time, distance]
+    instructions:
+      - km: 100.0
+        notes: "Dirt track"
+      - km: 348.0
+        notes: "Rejoin"
+```
+
+Fields covered: `branches` id, `note`, `impact` (distance/time/pros/cons), `instructions` array.
+
+### `alternatives` (inline alternative references)
+
+```yaml
+entries:
+  - id: m10
+    km: 88.8
+    alternatives:
+      - skip_to: m14
+        tulip: { symbol: exit-left }
+      - branch: scenic_route
+        note: "If early, take the scenic route"
+```
+
+Fields covered: `alternatives` with `skip_to` or `branch` references and `note`.
+
+### `time` (earliest/latest or duration)
+
+```yaml
+entries:
+  - id: t1
+    km: 50.0
+    time:
+      earliest: "08:20"
+      latest: "09:20"
+```
+
+Fields covered: `time.earliest`, `time.latest` (also support ISO durations in some profiles).
+
+### `location` (multiple coordinate systems)
+
+```yaml
+entries:
+  - id: loc1
+    km: 12.1
+    location:
+      name: "Coll de Sant Marçal"
+      lat: 41.345
+      lon: 2.345
+      pluscode: "8FW4V+2V"
+      what3words: "index.card.route"
+```
+
+Fields covered: `location.name`, `lat`, `lon`, `pluscode`, `what3words`.
+
+### `road` transitions and surface
+
+```yaml
+entries:
+  - id: r1
+    km: 23.5
+    notes: "Transition to gravel"
+    road:
+      current: tarmac
+      next: gravel
+```
+
+Fields covered: `road.current`, `road.next` and surface hints.
+
+### `tags` / `labels` / `flags`
+
+```yaml
+entries:
+  - id: e-tag
+    km: 5.0
+    notes: "Photo stop"
+    tags: [photo, scenic]
+```
+
+Fields covered: `tags`/`labels` arrays to annotate entries.
+
+### `authors` block example (document-level)
+
+```yaml
+meta:
+  authors:
+    - name: "Jane Rider"
+      email: jane@example.org
+      organisation: "Adventure Club"
+```
+
+### `extensions` examples (vendor namespaces)
+
+```yaml
+meta:
+  extensions:
+    corbs.render:
+      preview: true
+      layout: "compact"
+    orb.analytics:
+      telemetry: true
+```
+
+Extensions are free-form and namespaced; validators typically ignore unknown keys.
+
+### `speed_limit` and safety fields
+
+```yaml
+entries:
+  - id: sl1
+    km: 77.7
+    notes: "Entering town — reduce speed"
+    speed_limit: 50
+    symbols: [speed_limit]
+```
+
+### `meta.units` and unit conversions
+
+Always set `meta.units` when distances are not kilometres. Example using miles:
+
+```yaml
+meta:
+  units: miles
+```
+
+### Putting it all together — a full minimal stage
+
+```yaml
+meta:
+  format: OpenRoadBook
+  version: 1.0
+  title: "Demo"
+  units: km
+
+stages:
+  - id: demo
+    title: "Demo Stage"
+    entries:
+      - id: start
+        km: 0.0
+        tulip: start
+        notes: "Stage start"
+      - id: e2
+        km: 8.2
+        tulip: turn_right
+        notes: "Turn right after bridge"
+        waypoint: { lat: 41.2, lon: 2.2 }
+      - id: e3
+        km: 12.0
+        tulip:
+          symbol: junction.turn_left
+          variant: slight
+        notes: "Slight left"
+        alternatives:
+          - branch: scenic_route
+            note: "Detour for views"
+
+branches:
+  - id: scenic_route
+    instructions:
+      - km: 14.0
+        notes: "Scenic track"
+
+symbols:
+  - id: danger2
+    name: "Danger"
+    category: hazard
+    svg: danger2.svg
+
+extensions:
+  corbs.render:
+    preview: true
+```
+
+If you want, I can now scan `schemas/orb.schema.json` and generate a one-to-one example for every named definition (definitions/subschemas). Tell me if you prefer a single combined file with all examples, or split examples into separate pages per schema section.
+        Last updated: 2025-12-10

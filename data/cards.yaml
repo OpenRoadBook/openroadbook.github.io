@@ -1,0 +1,85 @@
+audience:
+  - title: "Organizers"
+    body: |
+      Publish adventure stages with predictable layouts,
+      symbols, and exports now—then adopt scrutineering
+      data, penalties, and timing as the FIA profile lands.
+  - title: "Competitors"
+    body: |
+      Practice on legible, signage-inspired roadbooks today
+      and stay aligned with the future competitive format
+      when you step into pro events.
+  - title: "Software developers"
+    body: |
+      Parse structured entries, export GPX, and integrate
+      with basic dashboards now—then plug into telemetry,
+      scoring, and compliance services as the schema expands.
+  - title: "Tool builders"
+    body: |
+      Align dashboards, printers, and visualization tools
+      to one file today, and extend to pro-grade digital
+      navigation and partner integrations tomorrow.
+
+principles:
+  - title: "Structured data model"
+    body: "Define distance, CAP, tulips, hazards, and attachments with predictable types. Upcoming profiles add timing, penalties, and pro rally metadata without breaking compatibility."
+    cta:
+      text: "See data model"
+      url: "/format/#data-model"
+      style: "btn btn--ghost"
+  - title: "Symbol registry"
+    body: "Reference hazards, services, and surfaces by ID using open SVG assets. Roadmapped updates expand the registry for FIA sites, competitive hazards, and localization."
+    cta:
+      text: "Browse symbols"
+      url: "/format/#symbol-registry"
+      style: "btn btn--ghost"
+  - title: "Validation & tooling"
+    body: "CLI tooling validates YAML, exports GPX, and renders printable layouts. The next wave adds scrutineering automation, conversion pipelines, and digital navigation sync."
+    cta:
+      text: "Validation guidance"
+      url: "/spec/#validation"
+      style: "btn btn--ghost"
+
+resources:
+  - title: "Format overview"
+    body: "Symbols, schema anatomy, and implementation notes for the current adventure release."
+    cta:
+      text: "Explore the format"
+      url: "/format/"
+      style: "btn"
+  - title: "Quick start"
+    body: "A runnable walkthrough: download the demo file, validate it, edit, and export. Ideal for getting started."
+    cta:
+      text: "Try the quick start"
+      url: "/quick-start/"
+      style: "btn btn--ghost"
+  - title: "Specification"
+    body: "Draft requirements, profile hooks, and compliance guidance as we grow toward FIA support."
+    cta:
+      text: "Read the spec"
+      url: "/spec/"
+      style: "btn btn--secondary"
+  - title: "Demo roadbook"
+    body: "Explore a sample roadbook, download the ORB file, and validate it against the published schema."
+    cta:
+      text: "View the walkthrough"
+      url: "/format/demo-roadbook/"
+      style: "btn btn--ghost"
+  - title: "Community roadmap"
+    body: "Priorities for validation tooling, hazard registry expansion, and competitive rally features."
+    cta:
+      text: "View initiatives"
+      url: "/format/#roadmap"
+      style: "btn btn--ghost"
+
+assets:
+  - title: "Publish open symbols"
+    body: "Crowdsource clean-room SVGs, license them openly, and grow the registry so adventure and FIA events share the same icon language."
+  - title: "Ship validation"
+    body: "Expand JSON Schema coverage, wire it into CI, and block releases until entries, CAPs, hazards, and partner data validate."
+  - title: "Build converters"
+    body: "Extend CORBS-style tools that turn OpenRoadBook YAML into FIA-style PDFs, GPX/KML exports, and digital dashboards."
+  - title: "Document examples"
+    body: "Publish sample roadbooks, rendered outputs, and quick-start guides so new organizers adopt the schema with confidence."
+  - title: "Coordinate stewardship"
+    body: "Form a working group that keeps versioning transparent, reviews proposals, and aligns adoption with adventure and competitive rally needs."

@@ -1,0 +1,161 @@
+hero:
+  lead: |-
+    OpenRoadBook is the open standard for rally and adventure navigation. Built for clarity and interoperability, it defines a precise schema, signage-inspired marks, and robust validation for every stage.
+  artwork: true
+  ctas:
+    - text: Explore the Format
+      url: /format/
+      style: btn
+    - text: View Specification
+      url: /spec/
+      style: "btn btn--secondary"
+  card:
+    layout: inset
+    cta:
+      text: Check out the roadmap
+      url: /roadmap/
+      style: "btn btn--secondary"
+    list:
+      - |-
+        **Today:**
+        Adventure-ready schema, signage-inspired marks, and open validation tools.
+      - |-
+        **Next:**
+        FIA-aligned profiles, richer hazard taxonomy, digital nav integrations.
+      - |-
+        **Future:**
+        Partner dashboards, telemetry, and pro rally extensions.
+
+sections:
+  overview:
+    title: What OpenRoadBook provides
+    lead: |-
+      The standard specifies a clear file structure, a symbol registry, and a validation surface so authors and tools can exchange roadbooks reliably. The current release targets adventure and non-competitive events while providing extension points for competitive profiles.
+    bullets:
+      - Canonical YAML structure (with JSON equivalents) for human and machine use.
+      - Reference tooling and templates for validation, export, and rendering.
+      - Example roadbooks that serve as templates and test fixtures.
+      - Versioned extension points so higher-assurance profiles (e.g., FIA) can be added compatibly.
+    fact_card:
+      title: Direction of travel
+      items:
+        - label: Current scope
+          value: Adventure and overland events with lightweight, contributor-friendly toolchains.
+        - label: Capabilities
+          value: Schema, validator CLI, print templates, GPX export, and sample datasets.
+        - label: Next milestones
+          value: FIA-compliant profiles, hazard registry, scrutineering workflows, and richer metadata.
+        - label: Long-term
+          value: Professional dashboards, telemetry pipelines, and partner integrations for competitive rallies.
+
+  audience:
+    cards:
+      - title:  Organizers
+        body: |
+          Publish adventure stages with predictable layouts,
+          symbols, and exports now—then adopt scrutineering
+          data, penalties, and timing as the FIA profile lands.
+      - title: Competitors
+        body: |
+          Practice on legible, signage-inspired roadbooks today
+          and stay aligned with the future competitive format
+          when you step into pro events.
+      - title: Software developers
+        body: |
+          Parse structured entries, export GPX, and integrate
+          with basic dashboards now—then plug into telemetry,
+          scoring, and compliance services as the schema expands.
+      - title: Tool builders
+        body: |
+          Align dashboards, printers, and visualization tools
+          to one file today, and extend to pro-grade digital
+          navigation and partner integrations tomorrow.
+
+  principles:
+    title: Design principles
+    lead: |-
+      OpenRoadBook focuses on predictable structure, explicit units, and stable identifiers so data can be validated, rendered, and transformed by independent tools without losing meaning.
+    cards:
+      - title: Structured data model
+        body: |-
+          Define distance, CAP, tulips, hazards, and attachments with predictable types. Upcoming profiles add timing, penalties, and pro rally metadata without breaking compatibility.
+        cta:
+          text: "See data model"
+          url: /format/#data-model
+          style: "btn btn--ghost"
+      - title: Symbol registry
+        body: |-
+          Reference hazards, services, and surfaces by ID using open SVG assets. Roadmapped updates expand the registry for FIA sites, competitive hazards, and localization.
+        cta:
+          text: "Browse symbols"
+          url: /format/#symbol-registry
+          style: "btn btn--ghost"
+      - title: Validation & tooling
+        body: |-
+          CLI tooling validates YAML, exports GPX, and renders printable layouts. The next wave adds scrutineering automation, conversion pipelines, and digital navigation sync.
+        cta:
+          text: "Validation guidance"
+          url: /spec/#validation
+          style: "btn btn--ghost"
+
+  resources:
+    title: Primary resources
+    lead: |-
+      Start with the format overview to learn the file layout and symbol registry. Use the specification for normative rules and validation requirements, and the demo roadbook as a working template.
+    cards:
+      - title: Format overview
+        body: |-
+          Symbols, schema anatomy, and implementation notes for the current adventure release.
+        cta:
+          text: Explore the format
+          url: /format/
+          style: btn
+      - title: Quick start
+        body: |-
+          A runnable walkthrough: download the demo file, validate it, edit, and export. Ideal for getting started.
+        cta:
+          text: "Try the quick start"
+          url: /quick-start/
+          style: "btn btn--ghost"
+      - title: Specification
+        body: |-
+          Draft requirements, profile hooks, and compliance guidance as we grow toward FIA support.
+        cta:
+          text: "Read the spec"
+          url: /spec/
+          style: "btn btn--secondary"
+      - title: Demo roadbook
+        body: |-
+          Explore a sample roadbook, download the ORB file, and validate it against the published schema.
+        cta:
+          text: "View the walkthrough"
+          url: /format/demo-roadbook/
+          style: "btn btn--ghost"
+      - title: Community roadmap
+        body: |-
+          Priorities for validation tooling, hazard registry expansion, and competitive rally features.
+        cta:
+          text: "View initiatives"
+          url: /format/#roadmap
+          style: "btn btn--ghost"
+
+  assets:
+    title: Contributing & governance
+    lead: |-
+      The project is community-driven. Contributions that improve the registry, validation coverage, converters, or documentation are welcome. Governance and versioning policies are documented in the repository.
+    cards:
+      - title: Publish open symbols
+        body: |-
+          Crowdsource clean-room SVGs, license them openly, and grow the registry so adventure and FIA events share the same icon language.
+      - title: Ship validation
+        body: |-
+          Expand JSON Schema coverage, wire it into CI, and block releases until entries, CAPs, hazards, and partner data validate.
+      - title: Build converters
+        body: |-
+          Extend CORBS-style tools that turn OpenRoadBook YAML into FIA-style PDFs, GPX/KML exports, and digital dashboards.
+      - title: Document examples
+        body: |-
+          Publish sample roadbooks, rendered outputs, and quick-start guides so new organizers adopt the schema with confidence.
+      - title: Coordinate stewardship
+        body: |-
+          Form a working group that keeps versioning transparent, reviews proposals, and aligns adoption with adventure and competitive rally needs.

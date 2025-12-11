@@ -1,0 +1,36 @@
+resources:
+  - title: Format overview
+    body: |
+      Symbols, schema anatomy, and implementation notes for the current adventure release.
+    cta:
+      text: "Explore the format"
+      url: "/format/"
+      style: "btn"
+  - title: Quick start
+    body: |
+      A runnable walkthrough: download the demo file, validate it, edit, and export. Ideal for getting started.
+    cta:
+      text: "Try the quick start"
+      url: "/quick-start/"
+      style: "btn btn--ghost"
+  - title: Specification
+    body: |
+      Draft requirements, profile hooks, and compliance guidance as we grow toward FIA support.
+    cta:
+      text: "Read the spec"
+      url: "/spec/"
+      style: "btn btn--secondary"
+  - title: Demo roadbook
+    body: |
+      Explore a sample roadbook, download the ORB file, and validate it against the published schema.
+    cta:
+      text: "View the walkthrough"
+      url: "/format/demo-roadbook/"
+      style: "btn btn--ghost"
+  - title: Community roadmap
+    body: |
+      Priorities for validation tooling, hazard registry expansion, and competitive rally features.
+    cta:
+      text: "View initiatives"
+      url: "/format/#roadmap"
+      style: "btn btn--ghost"

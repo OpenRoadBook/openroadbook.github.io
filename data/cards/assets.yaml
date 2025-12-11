@@ -1,0 +1,16 @@
+assets:
+  - title: Publish open symbols
+    body: |
+      Crowdsource clean-room SVGs, license them openly, and grow the registry so adventure and FIA events share the same icon language.
+  - title: Ship validation
+    body: |
+      Expand JSON Schema coverage, wire it into CI, and block releases until entries, CAPs, hazards, and partner data validate.
+  - title: Build converters
+    body: |
+      Extend CORBS-style tools that turn OpenRoadBook YAML into FIA-style PDFs, GPX/KML exports, and digital dashboards.
+  - title: Document examples
+    body: |
+      Publish sample roadbooks, rendered outputs, and quick-start guides so new organizers adopt the schema with confidence.
+  - title: Coordinate stewardship
+    body: |
+      Form a working group that keeps versioning transparent, reviews proposals, and aligns adoption with adventure and competitive rally needs.
